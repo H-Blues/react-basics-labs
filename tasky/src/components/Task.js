@@ -1,7 +1,26 @@
 import React from 'react'
-import { Box, Button, Card, CardActions, CardContent, CardHeader, Grid, Typography } from '@mui/material'
+import { Box, Button, Card, CardActions, CardContent, CardHeader, Chip, Grid, Typography } from '@mui/material'
 
 const Task = (props) => {
+  const priorityColor = () => {
+    let priority = props.priority
+    let color
+    switch (priority) {
+      case "Low":
+        color = "success"
+        break
+      case "Medium":
+        color = "warning"
+        break
+      case "High":
+        color = "error"
+        break
+      default:
+        color = "primary"
+    }
+    return color
+  }
+
   return (
     <Grid
       item
@@ -22,6 +41,7 @@ const Task = (props) => {
             textAlign: 'center'
           }}
         />
+
         <CardContent>
           <Box
             sx={{
@@ -35,13 +55,17 @@ const Task = (props) => {
               Due: {props.deadline}
             </Typography>
           </Box>
+
           <Box
             sx={{
               display: 'flex',
               justifyContent: 'center',
-              alignItems: 'center'
+              alignItems: 'center',
+              mb: 2
             }}>
+            <Chip key={props.id} label={props.priority} color={priorityColor()} />
           </Box>
+
           <Typography
             component="p"
             variant="subtitle1"
@@ -51,13 +75,14 @@ const Task = (props) => {
             {props.description}
           </Typography>
         </CardContent>
+
         <CardActions sx={{ justifyContent: 'space-between', padding: '20px' }}>
           <Button variant="contained" size="small" color="success" onClick={props.markDone}>
             Done
-              </Button>
+          </Button>
           <Button variant="contained" size="small" color="error" onClick={props.deleteTask}>
             Delete
-              </Button>
+          </Button>
         </CardActions>
       </Card>
     </Grid>

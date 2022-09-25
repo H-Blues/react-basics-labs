@@ -1,7 +1,15 @@
-import React from "react"
-import { Box, Button, TextField } from "@mui/material"
+import React, { useState } from "react"
+import { Box, Button, MenuItem, TextField } from "@mui/material"
 
 const AddTaskForm = (props) => {
+  const [priorityState, setPriorityState] = useState({
+    priorities: [
+      { value: 'Low', label: 'Low' },
+      { value: 'Medium', label: 'Medium' },
+      { value: 'High', label: 'High' }
+    ]
+  })
+
   return (
     <div>
       <Box
@@ -35,6 +43,24 @@ const AddTaskForm = (props) => {
 
         <div>
           <TextField
+            required
+            select
+            defaultValue="Low"
+            name="priority"
+            label="Priority"
+            InputLabelProps={{ shrink: true }}
+            onChange={(event) => props.change(event)}
+          >
+            {priorityState.priorities.map((option) => (
+              <MenuItem key={option.value} value={option.value}>
+                {option.label}
+              </MenuItem>
+            ))}
+          </TextField>
+        </div>
+
+        <div>
+          <TextField
             name="description"
             id="outlined-multiline-static"
             label="Task Details"
@@ -60,7 +86,7 @@ const AddTaskForm = (props) => {
         </Button>
         </div>
       </Box>
-    </div>
+    </div >
   )
 }
 

@@ -9,13 +9,14 @@ South East Technology University
 ### Lecturer
 
 Name: Dr.Rosanne Birney
+
 E-mail: rosanne.birney@setu.ie
 
-### Tutors
+### Tutor Website
 
 https://wad2-2022.netlify.app
 
-### Content
+### Course Content
 
 - Mongo
 - Express
